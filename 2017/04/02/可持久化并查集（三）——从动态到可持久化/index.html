@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="baidu-site-verification" content="S5bJxhjLWN" />
+    
+
+    <title>
+      可持久化并查集（三）——从动态到可持久化 | lemonoil 
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="lemonoil">
+    
+    
+
+    <meta name="description" content="其实在上一篇：可持久化并查集（二）——从镜像到动态
+中已经可以算是一个伪可持久化了，但是对于历史查询等操作无能为力。。所以本篇重点介绍可持久化操作
+
+BZOJ 3673
+题目连接
+
+这题不知道出题人什么做法，但是代码很短的样子
+UPD：出题人用的是rope，即stl中的可持久化平衡树
+KuribohG神犇告诉了我可以用可持久化线段树实现可持久化数组T T
+既然都有可持久化数组了，只要用个再并查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可持久化并查集（三）——从动态到可持久化 | lemonoil">
+<meta property="og:url" content="https://lemonoil.github.io/2017/04/02/可持久化并查集（三）——从动态到可持久化/index.html">
+<meta property="og:site_name" content="lemonoil">
+<meta property="og:description" content="其实在上一篇：可持久化并查集（二）——从镜像到动态
+中已经可以算是一个伪可持久化了，但是对于历史查询等操作无能为力。。所以本篇重点介绍可持久化操作
+
+BZOJ 3673
+题目连接
+
+这题不知道出题人什么做法，但是代码很短的样子
+UPD：出题人用的是rope，即stl中的可持久化平衡树
+KuribohG神犇告诉了我可以用可持久化线段树实现可持久化数组T T
+既然都有可持久化数组了，只要用个再并查">
+<meta property="og:image" content="http://img.blog.csdn.net/20170226155123601?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVtb25vaWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-04-02T13:38:01.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="可持久化并查集（三）——从动态到可持久化 | lemonoil">
+<meta name="twitter:description" content="其实在上一篇：可持久化并查集（二）——从镜像到动态
+中已经可以算是一个伪可持久化了，但是对于历史查询等操作无能为力。。所以本篇重点介绍可持久化操作
+
+BZOJ 3673
+题目连接
+
+这题不知道出题人什么做法，但是代码很短的样子
+UPD：出题人用的是rope，即stl中的可持久化平衡树
+KuribohG神犇告诉了我可以用可持久化线段树实现可持久化数组T T
+既然都有可持久化数组了，只要用个再并查">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170226155123601?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVtb25vaWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.gif">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+	<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=400 src="//music.163.com/outchain/player?type=0&id=2206964132&auto=1&height=430"></iframe>
+	<div class="panel-main__content">
+        
+        <a href="/" title="link to homepage for lemonoil"><img src="/avatar.png" width="80" alt="lemonoil logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">lemonoil</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          OI__nothing is impossible
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/lemonoil" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <li class="navigation__item">
+        <a href="https://blog.csdn.net/lemonoil" title="another blog">
+          <i>
+            <img src="https://raw.githubusercontent.com/lemonoil/README-ans-REMEMBER-me/master/csdnl.png">
+            </i>
+          <span class="label">CSDN</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+	
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+
+    <h1 class="post-title">可持久化并查集（三）——从动态到可持久化</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-04-02" class="post-meta__date date">2017-04-02</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数据结构-并查集/">数据结构 并查集</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h4>其实在上一篇：<a href="http://blog.csdn.net/lemonoil/article/details/57085381" target="_blank" rel="external">可持久化并查集（二）——从镜像到动态</a></h4>
+<p>中已经可以算是一个伪可持久化了，但是对于历史查询等操作无能为力。。所以本篇重点介绍可持久化操作
+<img src="http://img.blog.csdn.net/20170226155123601?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGVtb25vaWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h1>BZOJ 3673</h1>
+<p><a href="https://vjudge.net/problem/HYSBZ-3673" target="_blank" rel="external">题目连接</a></p>
+<blockquote>
+<p>这题不知道出题人什么做法，但是代码很短的样子
+UPD：出题人用的是rope，即stl中的可持久化平衡树
+KuribohG神犇告诉了我可以用可持久化线段树实现可持久化数组T T
+既然都有可持久化数组了，只要用个再并查集的启发式合并就能妥妥的水过了（这样每次只要修改一个fa）
+并查集的启发式合并就是按秩合并，初始所有集合秩为0
+合并把秩小的树根的父亲设为秩大的树根
+如果秩相同，则随便选取一个作为父节点并将它的秩+1
+秩和fa一样维护
+但是其实这题数据随机的话随便合并就行了，根本不用按秩合并什么的
+UPD：秩其实有的时候很不好用，维护子树大小比较赞。。。
+另外，ndsf发现只要直接暴力就能虐了T T
+<a href="http://hzwer.com/3951.html" target="_blank" rel="external">引用自hzwer</a></p>
+</blockquote>
+<p>所以可以发现<s>暴力出奇迹</s>大力发展可持久化并查集是解决当今<s>膜蛤事件</s>。。。的唯一方法！！
+最终我们还是写份<s>正解</s>（hfu说没有正解，只有更好的暴力）</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N 2000005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n,m,sz;</div><div class="line"><span class="keyword">int</span> root[N],ls[N],rs[N],v[N],deep[N];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> &amp;k,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(!k)k=++sz;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;v[k]=l;<span class="keyword">return</span>;&#125;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	build(ls[k],l,mid);</div><div class="line">	build(rs[k],mid+<span class="number">1</span>,r);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x,<span class="keyword">int</span> &amp;y,<span class="keyword">int</span> pos,<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line">	y=++sz;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;v[y]=val;deep[y]=deep[x];<span class="keyword">return</span>;&#125;</div><div class="line">	ls[y]=ls[x];rs[y]=rs[x];</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(pos&lt;=mid)</div><div class="line">		modify(l,mid,ls[x],ls[y],pos,val);</div><div class="line">	<span class="keyword">else</span> modify(mid+<span class="number">1</span>,r,rs[x],rs[y],pos,val);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span> k;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(pos&lt;=mid)<span class="keyword">return</span> query(ls[k],l,mid,pos);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> query(rs[k],mid+<span class="number">1</span>,r,pos);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;deep[k]++;<span class="keyword">return</span>;&#125;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(pos&lt;=mid)add(ls[k],l,mid,pos);</div><div class="line">	<span class="keyword">else</span> add(rs[k],mid+<span class="number">1</span>,r,pos);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> p=query(k,<span class="number">1</span>,n,x);</div><div class="line">	<span class="keyword">return</span> x==v[p]?p:find(k,v[p]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> f,k,a,b;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</div><div class="line">	build(root[<span class="number">0</span>],<span class="number">1</span>,n);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;f;</div><div class="line">		<span class="keyword">if</span>(f==<span class="number">1</span>)&#123;</div><div class="line">			root[i]=root[i<span class="number">-1</span>];</div><div class="line">			<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</div><div class="line">			<span class="keyword">int</span> p=find(root[i],a),q=find(root[i],b);</div><div class="line">			<span class="keyword">if</span>(v[p]==v[q])<span class="keyword">continue</span>;</div><div class="line">			<span class="keyword">if</span>(deep[p]&gt;deep[q])swap(p,q);</div><div class="line">			modify(<span class="number">1</span>,n,root[i<span class="number">-1</span>],root[i],v[p],v[q]);</div><div class="line">			<span class="keyword">if</span>(deep[p]==deep[q])add(root[i],<span class="number">1</span>,n,v[q]);</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(f==<span class="number">2</span>)&#123;</div><div class="line">			<span class="built_in">cin</span>&gt;&gt;k;root[i]=root[k];</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(f==<span class="number">3</span>)&#123;</div><div class="line">			root[i]=root[i<span class="number">-1</span>];</div><div class="line">			<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</div><div class="line">		    <span class="keyword">int</span> p=find(root[i],a),q=find(root[i],b);</div><div class="line">			<span class="keyword">if</span>(v[p]==v[q])<span class="built_in">cout</span>&lt;&lt;<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">			<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>又是熟悉的线段树（貌似从主席树开始就阴魂不散了），复杂度因线段树而多加了一个log,但是以数据结构的标准数据范围来说，这点复杂度仍然是极好的，加上读入输出优化后可以从300ms-&gt;40ms
+亲自手测。</p>
+<h2>rope大发好！！！！</h2>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ext/rope&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fo(i,a,b) for(i=a;i&lt;=b;i++)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_cxx;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">20000</span>+<span class="number">10</span>;</div><div class="line">rope&lt;<span class="keyword">int</span>&gt; *b[maxn];</div><div class="line"><span class="keyword">int</span> a[maxn];</div><div class="line"><span class="keyword">int</span> i,j,k,l,t,n,m,ans;</div><div class="line"><span class="keyword">bool</span> flag;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getfa</span><span class="params">(<span class="keyword">int</span> id,<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (b[id]-&gt;at(x)==<span class="number">0</span>) <span class="keyword">return</span> x;</div><div class="line">    b[id]-&gt;replace(x,getfa(id,b[id]-&gt;at(x)));</div><div class="line">    <span class="keyword">return</span> b[id]-&gt;at(x);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    flag=<span class="number">0</span>;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">    fo(i,<span class="number">1</span>,n) a[i]=<span class="number">0</span>;</div><div class="line">    b[<span class="number">0</span>]=<span class="keyword">new</span> rope&lt;<span class="keyword">int</span>&gt; (a,a+n+<span class="number">1</span>);</div><div class="line">    fo(i,<span class="number">1</span>,m)&#123;</div><div class="line">        b[i]=<span class="keyword">new</span> rope&lt;<span class="keyword">int</span>&gt; (*b[i<span class="number">-1</span>]);</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</div><div class="line">        <span class="keyword">if</span> (t==<span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;j,&amp;k);</div><div class="line">            <span class="keyword">if</span> (flag) j^=ans,k^=ans;</div><div class="line">            j=getfa(i,j);</div><div class="line">            k=getfa(i,k);</div><div class="line">            <span class="keyword">if</span> (j!=k) b[i]-&gt;replace(k,j);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (t==<span class="number">2</span>)&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</div><div class="line">            <span class="keyword">if</span> (flag) k^=ans;</div><div class="line">            b[i]=b[k];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;j,&amp;k);</div><div class="line">            <span class="keyword">if</span> (flag) j^=ans,k^=ans;</div><div class="line">            j=getfa(i,j);</div><div class="line">            k=getfa(i,k);</div><div class="line">            <span class="keyword">if</span> (j!=k) ans=<span class="number">0</span>;<span class="keyword">else</span> ans=<span class="number">1</span>;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于这道题数据太水(zky大大别打我),所以还有一个<s>加强连</s>加强版。</p>
+<h1>BZOJ  3674</h1>
+<p><a href="https://vjudge.net/problem/HYSBZ-3674" target="_blank" rel="external">题目连接</a>
+什么强制在线。。。这种管用的手段。。除了<strong>xor</strong>就没有一点新意吗？（作死吐槽）
+回归主题，对于上一篇来说，反正都是非离线做法，转个在线水水水！！！！
+其实用类似于主席树的方法应该可以硬钢过这道题吧
+代码就用上面的那一份改改就好了，这里就不发出来了。</p>
+<h1>END</h1>
+<p>到这里，可持久化并查集的三部曲就结束了，不知道大家发没发现，这三篇都有一个共同特点？</p>
+<h2>图片都是博丽灵梦！！！</h2>
+
+  </section>
+
+  <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0Ni8xNDI3Nw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ���������� -->
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=846938219&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:846938219:51" alt="click it and link me" title="click it and link me"/></a>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+	
+    
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)'], ['$','$']]} 
+            });
+        });
+    </script>
+	<script type="text/javascript" src="http://latex.codecogs.com/editor3.js"></script>
+	<p><a href="javascript:OpenLatexEditor('testbox','html','')">
+	Launch CodeCogs Equation Editor
+	</a></p>
+	<textarea id="testbox" rows="3" cols="40"></textarea>
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script src="https://s13.cnzz.com/z_stat.php?id=1274126632&web_id=1274126632" language="JavaScript"></script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

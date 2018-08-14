@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="baidu-site-verification" content="S5bJxhjLWN" />
+    
+
+    <title>
+       | lemonoil 
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="lemonoil">
+    
+    
+
+    <meta name="description" content="blog源地址
+感谢__debug大佬。
+洲阁筛
+一种在 \( O(\frac{n^{\frac{3}{4}}}{\log n})\) 的时间中求出大多数积性函数的前缀和的方法.
+引入
+求 \( \sum_{i = 1}^{n} F(i) \)
+其中 \( F(x) \) 是一个积性函数. 要求在低于线性的时间内求出.
+转化
+如果 \( F(x) \) 是一个十分特殊的积性函数, 比如 \(">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" | lemonoil">
+<meta property="og:url" content="https://lemonoil.github.io/2017/09/22/洲阁筛/index.html">
+<meta property="og:site_name" content="lemonoil">
+<meta property="og:description" content="blog源地址
+感谢__debug大佬。
+洲阁筛
+一种在 \( O(\frac{n^{\frac{3}{4}}}{\log n})\) 的时间中求出大多数积性函数的前缀和的方法.
+引入
+求 \( \sum_{i = 1}^{n} F(i) \)
+其中 \( F(x) \) 是一个积性函数. 要求在低于线性的时间内求出.
+转化
+如果 \( F(x) \) 是一个十分特殊的积性函数, 比如 \(">
+<meta property="og:updated_time" content="2017-09-22T09:23:35.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" | lemonoil">
+<meta name="twitter:description" content="blog源地址
+感谢__debug大佬。
+洲阁筛
+一种在 \( O(\frac{n^{\frac{3}{4}}}{\log n})\) 的时间中求出大多数积性函数的前缀和的方法.
+引入
+求 \( \sum_{i = 1}^{n} F(i) \)
+其中 \( F(x) \) 是一个积性函数. 要求在低于线性的时间内求出.
+转化
+如果 \( F(x) \) 是一个十分特殊的积性函数, 比如 \(">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.gif">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+	<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=400 src="//music.163.com/outchain/player?type=0&id=2206964132&auto=1&height=430"></iframe>
+	<div class="panel-main__content">
+        
+        <a href="/" title="link to homepage for lemonoil"><img src="/avatar.png" width="80" alt="lemonoil logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">lemonoil</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          OI__nothing is impossible
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/lemonoil" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <li class="navigation__item">
+        <a href="https://blog.csdn.net/lemonoil" title="another blog">
+          <i>
+            <img src="https://raw.githubusercontent.com/lemonoil/README-ans-REMEMBER-me/master/csdnl.png">
+            </i>
+          <span class="label">CSDN</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+	
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+
+    <h1 class="post-title"></h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-22" class="post-meta__date date">2017-09-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><a href="http://debug18.com/posts/calculate-the-sum-of-multiplicative-function/" target="_blank" rel="external">blog源地址</a>
+感谢__debug大佬。</p>
+<h1>洲阁筛</h1>
+<p>一种在 \( O(\frac{n^{\frac{3}{4}}}{\log n})\) 的时间中求出大多数积性函数的前缀和的方法.</p>
+<p>引入
+求 \( \sum_{i = 1}^{n} F(i) \)
+其中 \( F(x) \) 是一个积性函数. 要求在低于线性的时间内求出.</p>
+<p>转化
+如果 \( F(x) \) 是一个十分特殊的积性函数, 比如 \( \mu^2(x) \), 那么可以非常快地求出; 就算它不那么特殊, 如果我们能找到两个合适的函数 \( G, H \) 满足\( F * G = H \), 并且\( G, H \) 的前缀和容易求出, 那么可以利用杜教筛在 \( O(n^{\frac{2}{3}}) \)的时间内求出. 但是当\( F(x)\) 不具备这些性质的时候呢?</p>
+<p>当然了, 还是有一个要求: 当 \( p\) 为质数的时候, \( F(p^c) \) 是一个关于 (p) 的低阶多项式.</p>
+<p>我们将 \( [1, n]\)的所有数按照是否有 \( &gt; \sqrt{n}\) 的质因子分为两类, 那么显然有: \( \sum_{i = 1}^{n} F(i) = \sum_{\substack{1 \le i \le n \ i \text{ have no prime factors } &gt; \sqrt{n} }} F(i) \left( 1 + \sum_{\substack{\sqrt{n} &lt; j \le \lfloor \frac{n}{i} \rfloor \ j \text{ is prime}}} F(j) \right) \)</p>
+<p>由于 \( i \ge \sqrt{n}\) 时后面一部分等于 \(1\), 所以需要计算以下两个东西:</p>
+<p>对于每个 \(1 \le i &lt; \sqrt{n}\), 计算 \( \sum_{\substack{\sqrt{n} &lt; j \le \lfloor \frac{n}{i} \rfloor \ j \text{ is prime}}}  F(j)  \sum_{\substack{\sqrt{n} \le i \le n \ i \text{ have no prime factors } &gt; \sqrt{n} }} F(i) \)
+当然, 最后还要用线性筛求出 \([1, \sqrt{n})\)的 \(F(x)\) 乘上相应的系数对答案的贡献, 这一部显然不会成为瓶颈.</p>
+<h1>Part 1</h1>
+<p>设 \(g_k(i, j)\) 表示 \([1, j]\) 中与前 \(i\) 个质数互质的数的 \(k\) 次幂和. 显然有转移 \(g_k(i, j) = g_k(i - 1, j) - p_i^k g_k(i - 1, \lfloor \frac{j}{p_i} \rfloor) \)</p>
+<p>观察到 \(j\) 的取值只有 \(\sqrt{n}\) 种, 于是直接暴力计算的复杂度为 \(O(\frac{n}{\log n})\).</p>
+<p>考虑优化. 首先注意到当 \(p_{i + 1} &gt; j\) 时 \(g_k(i, j) = 1\), 但是这个观察并不能带来什么优化; 紧接着我们发现如果 \(p_i &gt; \lfloor \frac{j}{p_i} \rfloor\) 即 \(p_i^2 &gt; j\) 时, \(g_k(i, j)\) 的转移变为: \(g_k(i, j) = g_k(i - 1, j) - p_i^k\)</p>
+<p>我们从小到大枚举 \(i\), 对于某个 \(j\) 一旦 \(p_{i_0}^2 &gt; j\) 便可以不再转移, 之后如果其他的值需要使用到它在 \(i_1\) 时的值, 直接用 \(g_k(i_0, j) - \sum_{l = i_0}^{i_1 - 1} p_l^k\) 即可. (其实这个地方还有一些细节, 可以自己思考)</p>
+<p>此时的复杂度可以简单地用积分近似为 \(O(\frac{n\frac{3}{4}}{\log n})\).</p>
+<h1>Part 2</h1>
+<p>设 \(f(i, j)\) 表示 \([1, j]\) 中仅由前 \(i\) 个质数组成的数的 \(F(x)\) 之和. 显然有转移 \(f(i, j) = f(i - 1, j) + \sum_{c \ge 1} F(p_i^c) f(i - 1, \lfloor \frac{j}{p_i^c} \rfloor)\)</p>
+<p>虽然多出来一个 \(\sum_{c \ge 1}\), 但是直接暴力计算的复杂度仍然是 \(O(\frac{n}{\log n})\). 如何优化? 似乎不太能沿用之前的方法了.</p>
+<p>但是如果将状态定义中的&quot;前 \(i\) 个质数&quot;改为&quot;(小于 \( \sqrt{n}\)的后 \(i\) 个质数&quot;, 此时当 \(p_i &gt; j\) 时, 一定有 \(f(i, j) = 1\). 类似地, 当 \(p_i^2 &gt; j\) 时转移变为: \(f(i, j) = f(i - 1, j) + F(p_i) \)</p>
+<p>所以可以从大到小枚举 \(i\), 如果对于某个 \(j\) 有 \(p_i^2 &gt; j\), 可以不转移, 每次用的时候加入 \([p_i, \min(j, \sqrt{n})]\) 这一段的质数的 \(F(p)\) 就可以了.</p>
+<p>类似上面的分析, 复杂度为 \(O(\frac{n^{\frac{3}{4}}}{\log n})\).</p>
+<p>小结
+从上面的推导可以看出, 如果 \(F(p^c)\) 是一个关于 \(p\) 的常数阶多项式, 那么我们可以在 \(O(\frac{n^{\frac{3}{4}}}{\log n})\) 的时间内求出 \(F(x)\) 的前 \(n\) 项和. 利用滚动数组, 空间复杂度是 \(O(\sqrt{n})\) 的.</p>
+<p>主要用到了以下几个想法:</p>
+<p>将所有数分按照有无大于 \(\sqrt{n}\) 的质因子为两类
+整除的结果只有 \(O(\sqrt{n})\) 种
+一个关于递推的优化技巧
+这几个想法相对独立, 都挺有启发性的, 感觉甚至可以优化一些 DP.</p>
+<p>例题: SPOJ DIVCNT3
+Description
+求 \( \sum_{i = 1}^{n} d(i^3)\)</p>
+<p>其中 \(d(x)\) 表示 \(x\) 的约数个数.</p>
+<p>\( n \le 10^{11} \) , 时限 20s.</p>
+<p>Solution
+直接上洲阁筛, 其中 \(F(p^c) = 3c + 1\).</p>
+<p>提供主要代码以供参考. 其中 \(sump[i]\) 表示小于等于 \(i\) 的质数之和, \(d3[i]\) 表示 \(d(i^3)\).
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">LL N;</div><div class="line"><span class="keyword">int</span> pbnd;</div><div class="line"><span class="keyword">int</span> vbnd;</div><div class="line"><span class="keyword">int</span> l0[SIZE], l[SIZE];</div><div class="line">LL g0[SIZE], g[SIZE], f0[SIZE], f[SIZE];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calcG</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vbnd; ++i) &#123;</div><div class="line">	g0[i] = i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = vbnd - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</div><div class="line">	g[i] = N / i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pbnd; ++i) &#123;</div><div class="line">	<span class="keyword">int</span> p = primes[i];</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; vbnd &amp;&amp; i &lt; l[j]; ++j) &#123;</div><div class="line">	    LL y = (N / j) / p;</div><div class="line">	    g[j] -= (y &lt; vbnd ? g0[y] - <span class="built_in">std</span>::max(<span class="number">0</span>, i - l0[y]) : g[N / y] - <span class="built_in">std</span>::max(<span class="number">0</span>, i - l[N / y]));</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = vbnd - <span class="number">1</span>; j &gt;= <span class="number">1</span> &amp;&amp; i &lt; l0[j]; --j) &#123;</div><div class="line">	    LL y = j / p;</div><div class="line">	    g0[j] -= g0[y] - <span class="built_in">std</span>::max(<span class="number">0</span>, i - l0[y]);</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vbnd; ++i) &#123;</div><div class="line">	g[i] -= pbnd - l[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calcF</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::fill(f0 + <span class="number">1</span>, f0 + vbnd, <span class="number">1</span>);</div><div class="line">    <span class="built_in">std</span>::fill(f + <span class="number">1</span>, f + vbnd, <span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = pbnd - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">	<span class="keyword">int</span> p = primes[i];</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; vbnd &amp;&amp; i &lt; l[j]; ++j) &#123;</div><div class="line">	    LL y = (N / j) / p;</div><div class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> z = <span class="number">1</span>; y; ++z, y /= p) &#123;</div><div class="line">		f[j] += (<span class="number">3</span> * z + <span class="number">1</span>) * (y &lt; vbnd ?</div><div class="line">				       f0[y] + <span class="number">4</span> * <span class="built_in">std</span>::max(<span class="number">0</span>, sump[y] - <span class="built_in">std</span>::max(l0[y], i + <span class="number">1</span>)) :</div><div class="line">				       f[N / y] + <span class="number">4</span> * (pbnd - <span class="built_in">std</span>::max(l[N / y], i + <span class="number">1</span>)));</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = vbnd - <span class="number">1</span>; j &gt;= <span class="number">1</span> &amp;&amp; i &lt; l0[j]; --j) &#123;</div><div class="line">	    <span class="keyword">int</span> y = j / p;</div><div class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> z = <span class="number">1</span>; y; ++z, y /= p) &#123;</div><div class="line">		f0[j] += (<span class="number">3</span> * z + <span class="number">1</span>) * (f0[y] + <span class="number">4</span> * <span class="built_in">std</span>::max(<span class="number">0</span>, sump[y] - <span class="built_in">std</span>::max(l0[y], i + <span class="number">1</span>)));</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vbnd; ++i) &#123;</div><div class="line">	f[i] += <span class="number">4</span> * (pbnd - l[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">calcSumS3</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (vbnd = <span class="number">1</span>; (LL)vbnd * vbnd &lt;= N; ++vbnd) &#123; &#125;</div><div class="line">    <span class="keyword">for</span> (pbnd = <span class="number">0</span>; (LL)primes[pbnd] * primes[pbnd] &lt;= N; ++pbnd) &#123; &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vbnd; ++i) &#123;</div><div class="line">	<span class="keyword">for</span> (l0[i] = l0[i - <span class="number">1</span>]; (LL)primes[l0[i]] * primes[l0[i]] &lt;= i; ++l0[i]) &#123; &#125;</div><div class="line">    &#125;</div><div class="line">    l[vbnd] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = vbnd - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</div><div class="line">	LL x = N / i;</div><div class="line">	<span class="keyword">for</span> (l[i] = l[i + <span class="number">1</span>]; (LL)primes[l[i]] * primes[l[i]] &lt;= x; ++l[i]) &#123; &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    calcG();</div><div class="line">    calcF();</div><div class="line"></div><div class="line">    LL ret = f[<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vbnd; ++i) &#123;</div><div class="line">	ret += d3[i] * <span class="number">4</span> * (g[i] - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0Ni8xNDI3Nw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ���������� -->
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=846938219&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:846938219:51" alt="click it and link me" title="click it and link me"/></a>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+	
+    
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)'], ['$','$']]} 
+            });
+        });
+    </script>
+	<script type="text/javascript" src="http://latex.codecogs.com/editor3.js"></script>
+	<p><a href="javascript:OpenLatexEditor('testbox','html','')">
+	Launch CodeCogs Equation Editor
+	</a></p>
+	<textarea id="testbox" rows="3" cols="40"></textarea>
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script src="https://s13.cnzz.com/z_stat.php?id=1274126632&web_id=1274126632" language="JavaScript"></script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

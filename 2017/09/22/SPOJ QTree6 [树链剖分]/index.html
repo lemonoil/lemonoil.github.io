@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="baidu-site-verification" content="S5bJxhjLWN" />
+    
+
+    <title>
+       | lemonoil 
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="lemonoil">
+    
+    
+
+    <meta name="description" content="啊啊啊！！！
+maintain的时候忘记~~+1s~~+1，于是就。。。累死了，只剩下最后一个Qtree7.
+这道题与上道题类似，关键在于路径上面判定同色，关键点在findpath上，至于线段树，我又一次惊叹于线段树在序列问题上近乎无敌的维护效率。中间的mid与mid+1的判定神来之笔。
+看来我就是一只菜鸡。
+123456789101112131415161718192021222324252">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" | lemonoil">
+<meta property="og:url" content="https://lemonoil.github.io/2017/09/22/SPOJ QTree6 [树链剖分]/index.html">
+<meta property="og:site_name" content="lemonoil">
+<meta property="og:description" content="啊啊啊！！！
+maintain的时候忘记~~+1s~~+1，于是就。。。累死了，只剩下最后一个Qtree7.
+这道题与上道题类似，关键在于路径上面判定同色，关键点在findpath上，至于线段树，我又一次惊叹于线段树在序列问题上近乎无敌的维护效率。中间的mid与mid+1的判定神来之笔。
+看来我就是一只菜鸡。
+123456789101112131415161718192021222324252">
+<meta property="og:updated_time" content="2017-09-22T06:45:54.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" | lemonoil">
+<meta name="twitter:description" content="啊啊啊！！！
+maintain的时候忘记~~+1s~~+1，于是就。。。累死了，只剩下最后一个Qtree7.
+这道题与上道题类似，关键在于路径上面判定同色，关键点在findpath上，至于线段树，我又一次惊叹于线段树在序列问题上近乎无敌的维护效率。中间的mid与mid+1的判定神来之笔。
+看来我就是一只菜鸡。
+123456789101112131415161718192021222324252">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.gif">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+	<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=400 src="//music.163.com/outchain/player?type=0&id=2206964132&auto=1&height=430"></iframe>
+	<div class="panel-main__content">
+        
+        <a href="/" title="link to homepage for lemonoil"><img src="/avatar.png" width="80" alt="lemonoil logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">lemonoil</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          OI__nothing is impossible
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/lemonoil" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <li class="navigation__item">
+        <a href="https://blog.csdn.net/lemonoil" title="another blog">
+          <i>
+            <img src="https://raw.githubusercontent.com/lemonoil/README-ans-REMEMBER-me/master/csdnl.png">
+            </i>
+          <span class="label">CSDN</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+	
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+
+    <h1 class="post-title"></h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-22" class="post-meta__date date">2017-09-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>啊啊啊！！！
+maintain的时候忘记~~+1s~~+1，于是就。。。累死了，只剩下最后一个Qtree7.
+这道题与上道题类似，关键在于路径上面判定同色，关键点在findpath上，至于线段树，我又一次惊叹于线段树在序列问题上近乎无敌的维护效率。中间的mid与mid+1的判定神来之笔。
+看来我就是一只菜鸡。</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;deque&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100100</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> mid ((l+r)&gt;&gt;1)</span></div><div class="line"><span class="keyword">struct</span> data&#123;</div><div class="line">	<span class="keyword">int</span> next,to;</div><div class="line">&#125;E[N&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="keyword">struct</span> node&#123;</div><div class="line">	<span class="keyword">int</span> l,r,ret;</div><div class="line">	node(<span class="keyword">int</span> l=<span class="number">0</span>,<span class="keyword">int</span> r=<span class="number">0</span>,<span class="keyword">int</span> s=<span class="number">1</span>):l(l),r(r),ret(s)&#123;&#125;</div><div class="line">&#125;tree[N&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="keyword">bool</span> G,H;</div><div class="line"><span class="keyword">int</span> n,q,x,y,z;</div><div class="line"><span class="keyword">int</span> head[N],sz[N],top[N],dfn[N],tot,cnt,fa[N],dft[N],sum[N],son[N];</div><div class="line"><span class="keyword">int</span> ls[N&lt;&lt;<span class="number">2</span>],rs[N&lt;&lt;<span class="number">2</span>],root[N],val[N][<span class="number">2</span>],col[N],bct;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">	E[++tot].to=y,E[tot].next=head[x],head[x]=tot;</div><div class="line">	E[++tot].to=x,E[tot].next=head[y],head[y]=tot;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfsf</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">	sz[u]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">		<span class="keyword">if</span>(v=E[i].to,v!=fa[u])&#123;</div><div class="line">			fa[v]=u,dfsf(v),sz[u]+=sz[v];</div><div class="line">			<span class="keyword">if</span>(sz[son[u]]&lt;sz[v])son[u]=v;</div><div class="line">		&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfss</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> f)</span></span>&#123;</div><div class="line">	top[u]=f,dft[dfn[u]=++cnt]=u,sum[f]++;</div><div class="line">    <span class="keyword">if</span>(son[u])dfss(son[u],f);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">		<span class="keyword">if</span>(v=E[i].to,v!=fa[u]&amp;&amp;v!=son[u])dfss(v,v);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	tree[rt].l=tree[rt].r=val[x][col[x]]+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> node <span class="title">merge</span><span class="params">(node &amp;x,node &amp;y,<span class="keyword">bool</span> b)</span></span>&#123;</div><div class="line">	node rt=node(x.l,y.r);</div><div class="line">	<span class="keyword">if</span>(b&amp;&amp;x.ret)rt.l=x.l+y.l;</div><div class="line">	<span class="keyword">if</span>(b&amp;&amp;y.ret)rt.r=y.r+x.r;</div><div class="line">	rt.ret=b&amp;&amp;y.ret&amp;&amp;x.ret;</div><div class="line">	<span class="keyword">return</span> rt;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;</div><div class="line">		<span class="keyword">int</span> u=dft[l];</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">		<span class="keyword">if</span>(v=E[i].to,v!=fa[u]&amp;&amp;top[u]!=top[v])&#123;</div><div class="line">				build(root[v]=++bct,dfn[v],dfn[v]+sum[v]<span class="number">-1</span>),</div><div class="line">				val[u][col[v]]+=tree[root[v]].l;</div><div class="line">			&#125;</div><div class="line">		maintain(rt,u);</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		build(ls[rt]=++bct,l,mid),build(rs[rt]=++bct,mid+<span class="number">1</span>,r);</div><div class="line">		tree[rt]=merge(tree[ls[rt]],tree[rs[rt]],col[dft[mid]]==col[dft[mid+<span class="number">1</span>]]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> ret=<span class="number">1</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span> ret;</div><div class="line">	<span class="keyword">if</span>(L&lt;=mid)ret&amp;=judge(ls[rt],l,mid,L,R);</div><div class="line">	<span class="keyword">if</span>(mid&lt;R)ret&amp;=judge(rs[rt],mid+<span class="number">1</span>,r,L,R);</div><div class="line">	<span class="keyword">if</span>(L&lt;=mid&amp;&amp;R&gt;mid)ret&amp;=col[dft[mid]]==col[dft[mid+<span class="number">1</span>]];</div><div class="line">	<span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"><span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; Q;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">findpath</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">bool</span> flag)</span></span>&#123;</div><div class="line">	Q.clear();</div><div class="line">	<span class="keyword">while</span>(x)&#123;</div><div class="line">		<span class="keyword">int</span> f=top[x];</div><div class="line">		<span class="keyword">if</span>(flag)&#123;</div><div class="line">			<span class="keyword">if</span>(!judge(root[f],dfn[f],dfn[x]+sum[f]<span class="number">-1</span>,dfn[f],dfn[x])||col[fa[f]]!=col[f]||!fa[f])&#123;</div><div class="line">				Q.push_front(x),Q.push_front(f);<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;<span class="keyword">else</span> Q.push_front(x),Q.push_front(f);</div><div class="line">		x=fa[f];</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)&#123;</div><div class="line">		<span class="keyword">int</span> f=dft[l];</div><div class="line">		<span class="keyword">if</span>(x+<span class="number">2</span>&lt;Q.size())&#123;</div><div class="line">			<span class="keyword">int</span> t=Q[x+<span class="number">1</span>];</div><div class="line">            val[f][col[t]]-=tree[root[t]].l;</div><div class="line">            update(root[t],dfn[t],dfn[t]+sum[t]<span class="number">-1</span>,x+<span class="number">2</span>);</div><div class="line">            val[f][col[t]]+=tree[root[t]].l;</div><div class="line">		&#125;<span class="keyword">else</span> col[f]=<span class="number">1</span>-col[f];</div><div class="line">		maintain(rt,f);</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">if</span>(dfn[Q[x]]&lt;=mid)update(ls[rt],l,mid,x);</div><div class="line">        <span class="keyword">else</span> update(rs[rt],mid+<span class="number">1</span>,r,x);</div><div class="line">        tree[rt]=merge(tree[ls[rt]],tree[rs[rt]],col[dft[mid]]==col[dft[mid+<span class="number">1</span>]]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x,<span class="keyword">bool</span> &amp;L,<span class="keyword">bool</span> &amp;R,<span class="keyword">int</span> res=<span class="number">0</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span> tree[rt].l;</div><div class="line">	<span class="keyword">if</span>(dfn[Q[x]]&lt;=mid)&#123;</div><div class="line">		res+=query(ls[rt],l,mid,x,L,R);</div><div class="line">        <span class="keyword">if</span>(R&amp;&amp;col[dft[mid+<span class="number">1</span>]]==col[dft[mid]])res+=tree[rs[rt]].l;</div><div class="line">        R=R&amp;&amp;tree[rs[rt]].ret&amp;&amp;col[dft[mid+<span class="number">1</span>]]==col[dft[mid]];</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        res+=query(rs[rt],mid+<span class="number">1</span>,r,x,L,R);</div><div class="line">        <span class="keyword">if</span>(L&amp;&amp;col[dft[mid+<span class="number">1</span>]]==col[dft[mid]])res+=tree[ls[rt]].r;</div><div class="line">        L=L&amp;&amp;tree[ls[rt]].ret&amp;&amp;col[dft[mid+<span class="number">1</span>]]==col[dft[mid]];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">	findpath(u,<span class="number">0</span>);</div><div class="line">	update(<span class="number">1</span>,<span class="number">1</span>,sum[<span class="number">1</span>],<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">	findpath(u,<span class="number">1</span>),u=Q[<span class="number">0</span>];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(root[u],dfn[u],dfn[u]+sum[u]<span class="number">-1</span>,<span class="number">1</span>,G=<span class="number">1</span>,H=<span class="number">1</span>));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;res)</span></span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="keyword">char</span> ch;<span class="keyword">int</span> flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>((ch=getchar())&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>;res=ch<span class="number">-48</span>;</div><div class="line">	<span class="keyword">while</span>((ch=getchar())&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)res=res*<span class="number">10</span>+ch<span class="number">-48</span>;res*=flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	read(n);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)read(x),read(y),addedge(x,y);</div><div class="line">	read(q),dfsf(<span class="number">1</span>),dfss(<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">	build(root[<span class="number">1</span>]=++bct,<span class="number">1</span>,sum[<span class="number">1</span>]);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=q;++i)&#123;</div><div class="line">		read(x),read(y);</div><div class="line">		<span class="keyword">if</span>(x)change(y);</div><div class="line">		<span class="keyword">else</span> ask(y);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0Ni8xNDI3Nw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ���������� -->
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=846938219&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:846938219:51" alt="click it and link me" title="click it and link me"/></a>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+	
+    
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)'], ['$','$']]} 
+            });
+        });
+    </script>
+	<script type="text/javascript" src="http://latex.codecogs.com/editor3.js"></script>
+	<p><a href="javascript:OpenLatexEditor('testbox','html','')">
+	Launch CodeCogs Equation Editor
+	</a></p>
+	<textarea id="testbox" rows="3" cols="40"></textarea>
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script src="https://s13.cnzz.com/z_stat.php?id=1274126632&web_id=1274126632" language="JavaScript"></script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="baidu-site-verification" content="S5bJxhjLWN" />
+    
+
+    <title>
+       | lemonoil 
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="lemonoil">
+    
+    
+
+    <meta name="description" content="感觉之前拿点分治水过心里过意不去，。。。。。mdzz，我还是打了一份树链剖分的code，具体方法与QTree4相同（详见代码），维护线段树的合并时的值。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" | lemonoil">
+<meta property="og:url" content="https://lemonoil.github.io/2017/09/22/SPOJ QTree5 [树链剖分]/index.html">
+<meta property="og:site_name" content="lemonoil">
+<meta property="og:description" content="感觉之前拿点分治水过心里过意不去，。。。。。mdzz，我还是打了一份树链剖分的code，具体方法与QTree4相同（详见代码），维护线段树的合并时的值。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+<meta property="og:updated_time" content="2017-09-22T06:45:04.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" | lemonoil">
+<meta name="twitter:description" content="感觉之前拿点分治水过心里过意不去，。。。。。mdzz，我还是打了一份树链剖分的code，具体方法与QTree4相同（详见代码），维护线段树的合并时的值。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.gif">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+	<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=400 src="//music.163.com/outchain/player?type=0&id=2206964132&auto=1&height=430"></iframe>
+	<div class="panel-main__content">
+        
+        <a href="/" title="link to homepage for lemonoil"><img src="/avatar.png" width="80" alt="lemonoil logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">lemonoil</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          OI__nothing is impossible
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/lemonoil" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <li class="navigation__item">
+        <a href="https://blog.csdn.net/lemonoil" title="another blog">
+          <i>
+            <img src="https://raw.githubusercontent.com/lemonoil/README-ans-REMEMBER-me/master/csdnl.png">
+            </i>
+          <span class="label">CSDN</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+	
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+
+    <h1 class="post-title"></h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-22" class="post-meta__date date">2017-09-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>感觉之前拿点分治水过心里过意不去，。。。。。mdzz，我还是打了一份树链剖分的code，具体方法与QTree4相同（详见代码），维护线段树的合并时的值。</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> mid ((l+r)&gt;&gt;1)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pf push_front</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">1e2</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</div><div class="line"><span class="keyword">struct</span> node&#123;</div><div class="line">	<span class="keyword">int</span> l,r;</div><div class="line">	node(<span class="keyword">int</span> l=<span class="number">0</span>,<span class="keyword">int</span> r=<span class="number">0</span>):l(l),r(r)&#123;&#125;</div><div class="line">&#125;seg[N&lt;&lt;<span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> n,dfs_cnt,cnt,cs,tot,Q,xx,yy;</div><div class="line"><span class="keyword">int</span> fa[N],head[N],id[N],dfn[N],top[N],sz[N],s[N],c[N];</div><div class="line"><span class="keyword">struct</span> data&#123;</div><div class="line">	<span class="keyword">int</span> to,next;</div><div class="line">&#125;E[N&lt;&lt;<span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> ls[N&lt;&lt;<span class="number">2</span>],rs[N&lt;&lt;<span class="number">2</span>],root[N];</div><div class="line"><span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; pat;</div><div class="line"><span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; ch[N];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</div><div class="line">	E[++tot].to=v,E[tot].next=head[u],head[u]=tot;</div><div class="line">	E[++tot].to=u,E[tot].next=head[v],head[v]=tot;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfsf</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">    sz[u]=<span class="number">1</span>;<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">        <span class="keyword">if</span>(v=E[i].to,v!=fa[u])fa[v]=u,dfsf(v),sz[u]+=sz[v];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfss</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> f)</span></span>&#123;</div><div class="line">    dfn[id[u]=++dfs_cnt]=u;</div><div class="line">    top[u]=f,s[f]++;</div><div class="line">    <span class="keyword">register</span> <span class="keyword">int</span> mx=<span class="number">0</span>,w;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">        <span class="keyword">if</span>(v=E[i].to,v!=fa[u])<span class="keyword">if</span>(mx&lt;sz[v])mx=sz[v],w=v;</div><div class="line">    <span class="keyword">if</span>(mx)dfss(w,f);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">        <span class="keyword">if</span>(v=E[i].to,v!=fa[u]&amp;&amp;v!=w)dfss(v,v);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> node <span class="title">merge</span><span class="params">(node&amp; a,node&amp; b,<span class="keyword">int</span> l1,<span class="keyword">int</span> l2,<span class="keyword">int</span> l3)</span></span>&#123;</div><div class="line">    node res;</div><div class="line">    res.l=min(a.l,l1+l2+b.l);</div><div class="line">    res.r=min(b.r,l2+l3+a.r);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> d1=INF,d2=INF;</div><div class="line">	<span class="keyword">if</span>(c[x])d1=d2=<span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span>(ch[x].size())d1=min(d1,*ch[x].begin());</div><div class="line">    <span class="keyword">if</span>(ch[x].size()&gt;<span class="number">1</span>)d2=min(d2,*(++ch[x].begin()));</div><div class="line">    seg[rt].l=seg[rt].r=d1;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        <span class="keyword">register</span> <span class="keyword">int</span> u=dfn[l];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> v,i=head[u];i;i=E[i].next)</div><div class="line">        	<span class="keyword">if</span>(v=E[i].to,v!=fa[u]&amp;&amp;top[v]!=top[u])</div><div class="line">        		build(root[v]=++cnt,id[v],id[v]+s[v]<span class="number">-1</span>),</div><div class="line">            	ch[u].insert(seg[root[v]].l+<span class="number">1</span>);</div><div class="line">        maintain(rt,u);</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">        build(ls[rt]=++cnt,l,mid);</div><div class="line">        build(rs[rt]=++cnt,mid+<span class="number">1</span>,r);</div><div class="line">        seg[rt]=merge(seg[ls[rt]],seg[rs[rt]],mid-l,<span class="number">1</span>,r-mid<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">    pat.clear();</div><div class="line">    <span class="keyword">register</span> <span class="keyword">int</span> l=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(u)&#123;</div><div class="line">        <span class="keyword">register</span> <span class="keyword">int</span> f=top[u];</div><div class="line">        pat.pf(l),pat.pf(u),pat.pf(f);</div><div class="line">        l+=id[u]-id[f]+<span class="number">1</span>,u=fa[f];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        <span class="keyword">register</span> <span class="keyword">int</span> u=dfn[l];</div><div class="line">        <span class="keyword">if</span>(i+<span class="number">3</span>&lt;pat.size())&#123;</div><div class="line">            <span class="keyword">register</span> <span class="keyword">int</span> nd=pat[i+<span class="number">2</span>];</div><div class="line">            ch[u].erase(ch[u].find(seg[root[nd]].l+<span class="number">1</span>));</div><div class="line">            update(root[nd],id[nd],id[nd]+s[nd]<span class="number">-1</span>,i+<span class="number">3</span>);</div><div class="line">            ch[u].insert(seg[root[nd]].l+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        maintain(rt,u);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(id[pat[i]]&lt;=mid)update(ls[rt],l,mid,i);</div><div class="line">        <span class="keyword">else</span> update(rs[rt],mid+<span class="number">1</span>,r,i);</div><div class="line">        seg[rt]=merge(seg[ls[rt]],seg[rs[rt]],mid-l,<span class="number">1</span>,r-mid<span class="number">-1</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> res=INF;</div><div class="line">    <span class="keyword">if</span>(l==r)&#123;</div><div class="line">        <span class="keyword">if</span>(i+<span class="number">3</span>&lt;pat.size())&#123;</div><div class="line">            <span class="keyword">register</span> <span class="keyword">int</span> nd=pat[i+<span class="number">2</span>];</div><div class="line">            res=query(root[nd],id[nd],id[nd]+s[nd]<span class="number">-1</span>,i+<span class="number">3</span>);</div><div class="line">        &#125;</div><div class="line">        res=min(res,seg[rt].l+pat[i+<span class="number">1</span>]);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(id[pat[i]]&lt;=mid)res=min(query(ls[rt],l,mid,i),mid+<span class="number">1</span>-id[pat[i]]+seg[rs[rt]].l+pat[i+<span class="number">1</span>]);</div><div class="line">        <span class="keyword">else</span> res=min(query(rs[rt],mid+<span class="number">1</span>,r,i),seg[ls[rt]].r+id[pat[i]]-mid+pat[i+<span class="number">1</span>]);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;res)</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">char</span> ch;<span class="keyword">int</span> flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>;res=ch<span class="number">-48</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)res=res*<span class="number">10</span>+ch<span class="number">-48</span>;res*=flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    read(n);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> a,b,i=<span class="number">1</span>;i&lt;n;i++)</div><div class="line">        read(a),read(b),addedge(a,b);</div><div class="line">    dfsf(<span class="number">1</span>),dfss(<span class="number">1</span>,<span class="number">1</span>);read(Q);</div><div class="line">    build(root[<span class="number">1</span>]=++cnt,<span class="number">1</span>,s[<span class="number">1</span>]);</div><div class="line">    <span class="keyword">while</span>(Q--)&#123;</div><div class="line">        read(xx),read(yy),find(yy);</div><div class="line">        <span class="keyword">if</span>(xx)&#123;</div><div class="line">            <span class="keyword">if</span>(!cs)&#123;<span class="built_in">puts</span>(<span class="string">"-1"</span>);<span class="keyword">continue</span>; &#125;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(<span class="number">1</span>,<span class="number">1</span>,s[<span class="number">1</span>],<span class="number">1</span>));</div><div class="line">    	&#125;<span class="keyword">else</span>&#123;</div><div class="line">            cs+=<span class="number">1</span>-c[yy]*<span class="number">2</span>,c[yy]=<span class="number">1</span>-c[yy];</div><div class="line">            update(<span class="number">1</span>,<span class="number">1</span>,s[<span class="number">1</span>],<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0Ni8xNDI3Nw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ���������� -->
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=846938219&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:846938219:51" alt="click it and link me" title="click it and link me"/></a>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+	
+    
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)'], ['$','$']]} 
+            });
+        });
+    </script>
+	<script type="text/javascript" src="http://latex.codecogs.com/editor3.js"></script>
+	<p><a href="javascript:OpenLatexEditor('testbox','html','')">
+	Launch CodeCogs Equation Editor
+	</a></p>
+	<textarea id="testbox" rows="3" cols="40"></textarea>
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script src="https://s13.cnzz.com/z_stat.php?id=1274126632&web_id=1274126632" language="JavaScript"></script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
