@@ -15,19 +15,34 @@
     
     
 
-    <meta name="description" content="[toc]本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）详略在文章中体现，如有错误，请各位读者指正。
-从树链剖分讲起其实我是先会LCT，再会链剖的，所以说比较尴尬。。。但是自我学习了链剖后，">
+    <meta name="description" content="[toc]
+本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。
+本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）
+详略在文章中体现，如有错误，请各位读者指正。
+从树链剖分讲起
+其实我是先会LCT，再会链剖的，所以说比较尴尬。。。
+但是自我学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content=" | lemonoil">
 <meta property="og:url" content="https://lemonoil.github.io/2017/09/22/浅谈竞赛中的部分树（块、点、链）【长期更新】/index.html">
 <meta property="og:site_name" content="lemonoil">
-<meta property="og:description" content="[toc]本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）详略在文章中体现，如有错误，请各位读者指正。
-从树链剖分讲起其实我是先会LCT，再会链剖的，所以说比较尴尬。。。但是自我学习了链剖后，">
+<meta property="og:description" content="[toc]
+本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。
+本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）
+详略在文章中体现，如有错误，请各位读者指正。
+从树链剖分讲起
+其实我是先会LCT，再会链剖的，所以说比较尴尬。。。
+但是自我学习">
 <meta property="og:updated_time" content="2017-09-22T06:53:38.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" | lemonoil">
-<meta name="twitter:description" content="[toc]本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）详略在文章中体现，如有错误，请各位读者指正。
-从树链剖分讲起其实我是先会LCT，再会链剖的，所以说比较尴尬。。。但是自我学习了链剖后，">
+<meta name="twitter:description" content="[toc]
+本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。
+本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）
+详略在文章中体现，如有错误，请各位读者指正。
+从树链剖分讲起
+其实我是先会LCT，再会链剖的，所以说比较尴尬。。。
+但是自我学习">
     
     
     
@@ -171,52 +186,171 @@
   </header>
 
   <section id="post-content" class="article-content post">
-    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>[toc]<br>本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。<br>本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）<br>详略在文章中体现，如有错误，请各位读者指正。</p>
-<h1 id="从树链剖分讲起"><a href="#从树链剖分讲起" class="headerlink" title="从树链剖分讲起"></a>从树链剖分讲起</h1><p>其实我是先会LCT，再会链剖的，所以说比较尴尬。。。<br>但是自我学习了链剖后，我发现链剖给予了树上操作无限的可能性。</p>
-<h2 id="长链与重链"><a href="#长链与重链" class="headerlink" title="长链与重链"></a>长链与重链</h2><p>重链剖分在OI中很常见，所以这里只放出模板的博客：<br><a href="http://www.cnblogs.com/Sdchr/p/6357576.html" target="_blank" rel="external">感谢博主——Sdchr</a><br>长链剖分比较冷门，大部分使用在$O(1)$查询第k级祖先，与重链剖分相对的，就是把size的处理变为deep的处理。<br>这里也有份比较详细的blog： <a href="http://www.cnblogs.com/zzqsblog/articles/6700133.html" target="_blank" rel="external">感谢博主——ZZQ</a><br>这里的长链与重链的关系有些像平衡树中的重量平衡与深度平衡，各有特点，相互弥补在树上操作的不足。<br>重点即是重链与轻链的交替穿插，使得部分信息能够在树中快速上传，将树变得有序化，层次化就是树链剖分的本质。<br>长链剖分的题除上述提到外还有 BZOJ1785、BZOJ4543。<br>讲重点：<br>1.为什么要学树链剖分？<br>A:因为要考，lct的常数太大。链剖可以快速地与其他数据结构相关联，易出题。<br>2.如何学习链剖？<br>A:做题，做与其他数据结构、算法结合的题，特别是对于链剖在各类的树上运用。链剖模板很简单，但是如何运用是一个需要深度思考的问题。遇到链剖题千万不要裸上LCT水掉，当遇上卡常类、与一些高级算法结合类的题时就会无从下手。（说的就是blog主。。。）<br>3.学习链剖要到什么程度？<br>A:模板10~15min，重要的是快判断题目可以用链剖解决，并且知道如何解决（说白了，就是多刷点题）。</p>
-<p>上干货（咦？长链剖分都不算干货？）<br>好吧。。补充长链剖分模板中的核心代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> fa[N],depth[N],Dep[N],top[N],son[N],dfn[N],cnt;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> f)</span></span>&#123;</div><div class="line">	Dep[u]=depth[u]=depth[fa]+<span class="number">1</span>,fa[u]=f;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=f)</div><div class="line">			dfs(V,u),Dep[u]=max(Dep[u],Dep[V]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa,<span class="keyword">int</span> z)</span></span>&#123;</div><div class="line">	dfn[u]=++cnt,top[u]=z,son[u]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> maxv=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=fa&amp;&amp;Dep[V]&gt;maxv)</div><div class="line">			maxv=Dep[son[u]=V];</div><div class="line">	<span class="keyword">if</span>(son[u])ask(son[u],u,z);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=fa&amp;&amp;V!=son[u])</div><div class="line">	ask(V,u,V);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+    <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>[toc]
+本文会从链剖讲起，涉及其变形进阶，之后也会讲到DFS序，树上分块，块状树，点分治与边分治，LCT，仙人掌与仙人球，伪top_tree(AAA树)，top_tree。
+本文重点讲述思维，至于例题虽会有涉及，但还是请读者自行百度（毕竟OI是不缺题的。。。。）
+详略在文章中体现，如有错误，请各位读者指正。</p>
+<h1>从树链剖分讲起</h1>
+<p>其实我是先会LCT，再会链剖的，所以说比较尴尬。。。
+但是自我学习了链剖后，我发现链剖给予了树上操作无限的可能性。</p>
+<h2>长链与重链</h2>
+<p>重链剖分在OI中很常见，所以这里只放出模板的博客：
+<a href="http://www.cnblogs.com/Sdchr/p/6357576.html" target="_blank" rel="external">感谢博主——Sdchr</a>
+长链剖分比较冷门，大部分使用在$O(1)$查询第k级祖先，与重链剖分相对的，就是把size的处理变为deep的处理。
+这里也有份比较详细的blog： <a href="http://www.cnblogs.com/zzqsblog/articles/6700133.html" target="_blank" rel="external">感谢博主——ZZQ</a>
+这里的长链与重链的关系有些像平衡树中的重量平衡与深度平衡，各有特点，相互弥补在树上操作的不足。
+重点即是重链与轻链的交替穿插，使得部分信息能够在树中快速上传，将树变得有序化，层次化就是树链剖分的本质。
+长链剖分的题除上述提到外还有 BZOJ1785、BZOJ4543。
+讲重点：
+1.为什么要学树链剖分？
+A:因为要考，lct的常数太大。链剖可以快速地与其他数据结构相关联，易出题。
+2.如何学习链剖？
+A:做题，做与其他数据结构、算法结合的题，特别是对于链剖在各类的树上运用。链剖模板很简单，但是如何运用是一个需要深度思考的问题。遇到链剖题千万不要裸上LCT水掉，当遇上卡常类、与一些高级算法结合类的题时就会无从下手。（说的就是blog主。。。）
+3.学习链剖要到什么程度？
+A:模板10~15min，重要的是快判断题目可以用链剖解决，并且知道如何解决（说白了，就是多刷点题）。</p>
+<p>上干货（咦？长链剖分都不算干货？）
+好吧。。补充长链剖分模板中的核心代码
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> fa[N],depth[N],Dep[N],top[N],son[N],dfn[N],cnt;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> f)</span></span>&#123;</div><div class="line">	Dep[u]=depth[u]=depth[fa]+<span class="number">1</span>,fa[u]=f;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=f)</div><div class="line">			dfs(V,u),Dep[u]=max(Dep[u],Dep[V]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa,<span class="keyword">int</span> z)</span></span>&#123;</div><div class="line">	dfn[u]=++cnt,top[u]=z,son[u]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> maxv=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=fa&amp;&amp;Dep[V]&gt;maxv)</div><div class="line">			maxv=Dep[son[u]=V];</div><div class="line">	<span class="keyword">if</span>(son[u])ask(son[u],u,z);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> p=head[u];p;p=G[p].next)</div><div class="line">		<span class="keyword">if</span>(V!=fa&amp;&amp;V!=son[u])</div><div class="line">	ask(V,u,V);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>可以看见size不见了只多出来一个新的dep。剩下的就靠自己领悟了。</p>
-<h2 id="合并！"><a href="#合并！" class="headerlink" title="合并！"></a>合并！</h2><p>从刘rj的紫书上看到了有关树链剖分的合并，详情可以参考<br><a href="http://www.cnblogs.com/idy002/p/4563611.html" target="_blank" rel="external">%%%——idy002</a>学长大佬。<br>有序链剖概念的提出给予我们一扇新世界的大门<br><a href="http://blog.csdn.net/lemonoil/article/details/63262360" target="_blank" rel="external">见例题T3</a><br>link操作神来之笔，但是反过来说，难道寻常链剖做不到有序吗？不见得吧，用if特判或者再建立一棵倒着的树链剖分不就可以了吗?方法有很多不见得固定死思维，只要算法有正确性，复杂度合适，那么勇敢创新是值得借鉴的。</p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p>链剖小技巧：<br>1.求LCA，虽然理论复杂度比倍增高，但是实际效果令人满意，链剖的理论常数基本不大于1，实际贴近于\(\frac{1}{2}\),所以LCA用它在线查询是很不错的。<br>2.长链、重链一起上，反正都要用到dfs序，而且步骤也简单只需追加一个数组即可，当你无法判定是重链还是长链时，这样很稳。</p>
+<h2>合并！</h2>
+<p>从刘rj的紫书上看到了有关树链剖分的合并，详情可以参考
+<a href="http://www.cnblogs.com/idy002/p/4563611.html" target="_blank" rel="external">%%%——idy002</a>学长大佬。
+有序链剖概念的提出给予我们一扇新世界的大门
+<a href="http://blog.csdn.net/lemonoil/article/details/63262360" target="_blank" rel="external">见例题T3</a>
+link操作神来之笔，但是反过来说，难道寻常链剖做不到有序吗？不见得吧，用if特判或者再建立一棵倒着的树链剖分不就可以了吗?方法有很多不见得固定死思维，只要算法有正确性，复杂度合适，那么勇敢创新是值得借鉴的。</p>
+<h2>tips</h2>
+<p>链剖小技巧：
+1.求LCA，虽然理论复杂度比倍增高，但是实际效果令人满意，链剖的理论常数基本不大于1，实际贴近于\(\frac{1}{2}\),所以LCA用它在线查询是很不错的。
+2.长链、重链一起上，反正都要用到dfs序，而且步骤也简单只需追加一个数组即可，当你无法判定是重链还是长链时，这样很稳。</p>
 <p>一般来说，裸的链剖是考不出什么花样的，所以学会套用数据结构才是灵活掌握链剖的表现。</p>
-<h2 id="过渡Ⅰ"><a href="#过渡Ⅰ" class="headerlink" title="过渡Ⅰ"></a>过渡Ⅰ</h2><p>链剖就这样结束了吧，毕竟大家都有过了解，并且也都学习过，接下来是一道裸题，轻喷。<br><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1036" target="_blank" rel="external">BZOJ1036</a><br>没错，是一道已经做烂的经典题目，什么树链剖分+线段树就可以快速水过，详情请见hzwer（%%%）的代码，里面还有一份很清新的LCT的方法，这些都是极好的。<br>接下来，就是重点。为什么博主谈到了这道题，那是因为与接下来的块状树有关。</p>
-<h1 id="块状树（优秀的暴力）"><a href="#块状树（优秀的暴力）" class="headerlink" title="块状树（优秀的暴力）"></a>块状树（优秀的暴力）</h1><p>一般谈到块状树，例题举例便是<strong>Gty的超级妹子树</strong>之类的，会使人感觉块状树引用范围太少，比不上链剖（虽然这是事实），块状树的应用实际上过更加广泛，更加灵活。<br>所以上面那道BZOJ1036便是一个例子。<br>这次不矫情，直接上code：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*************************************************</span></div><div class="line">    Problem: 1036</div><div class="line">    User: lemonoil</div><div class="line">    Language: C++</div><div class="line">    Result: Accepted</div><div class="line">    Time:2852 ms</div><div class="line">    Memory:4512 kb</div><div class="line">****************************************************/</div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">30000</span>,inf=~<span class="number">0U</span>&gt;&gt;<span class="number">1</span>;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">char</span> cmd[<span class="number">10</span>];</div><div class="line"><span class="keyword">struct</span> data&#123;</div><div class="line">    <span class="keyword">int</span> to,next;</div><div class="line">&#125;E[maxn&lt;&lt;<span class="number">1</span>],Et[maxn&lt;&lt;<span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> n,q,s,t,x,y,w[maxn],sqrtn,deep[maxn],fa[maxn];</div><div class="line"><span class="keyword">int</span> belong[maxn],M[maxn],sz[maxn],head[maxn],tail[maxn],tot,cnt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    E[++tot].to=y,E[tot].next=head[x],head[x]=tot;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    Et[++cnt].to=y,Et[cnt].next=tail[x],tail[x]=cnt;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsf</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> f,<span class="keyword">int</span> d)</span></span>&#123;</div><div class="line">    deep[t]=d,fa[t]=f;</div><div class="line">    <span class="keyword">int</span> tmp=belong[t];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> e=head[t];e;e=E[e].next)<span class="keyword">if</span>(E[e].to!=f)&#123;</div><div class="line">        <span class="keyword">if</span>(sz[tmp]++&lt;sqrtn)insert(t,E[e].to),belong[E[e].to]=tmp;</div><div class="line">        dfsf(E[e].to,t,d+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfss</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> s,<span class="keyword">int</span> m)</span></span>&#123;</div><div class="line">    sz[t]=s+=w[t];M[t]=m=max(m,w[t]);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> e=tail[t];e;e=Et[e].next)dfss(Et[e].to,s,m);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">    w[t]=u;</div><div class="line">    <span class="keyword">if</span>(t==belong[t])dfss(t,<span class="number">0</span>,-inf);</div><div class="line">    <span class="keyword">else</span> dfss(t,sz[fa[t]],M[fa[t]]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span>&amp;s,<span class="keyword">int</span>&amp;m)</span></span>&#123;</div><div class="line">    s=<span class="number">0</span>;m=-inf;</div><div class="line">    <span class="keyword">while</span>(a!=b)&#123;</div><div class="line">        <span class="keyword">if</span>(deep[a]&lt;deep[b])swap(a,b);</div><div class="line">        <span class="keyword">if</span>(belong[a]==belong[b])</div><div class="line">            s+=w[a],m=max(m,w[a]),a=fa[a];</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">if</span>(deep[belong[a]]&lt;deep[belong[b]])swap(a,b);</div><div class="line">            s+=sz[a],m=max(m,M[a]),a=fa[belong[a]];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    m=max(m,w[a]);s+=w[a];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;res)</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">char</span> ch;<span class="keyword">int</span> flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>;res=ch<span class="number">-48</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)res=res*<span class="number">10</span>+ch<span class="number">-48</span>;res*=flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    read(n),sqrtn=<span class="built_in">sqrt</span>(n)+<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)read(s),read(t),--s,--t,addedge(s,t),addedge(t,s);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)read(w[i]),belong[i]=i;</div><div class="line">    dfsf(<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>),read(q);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(belong[i]==i)dfss(i,<span class="number">0</span>,-inf);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;q;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,cmd);</div><div class="line">        read(s),read(t);</div><div class="line">        <span class="keyword">if</span>(cmd[<span class="number">0</span>]==<span class="string">'C'</span>)change(s<span class="number">-1</span>,t);</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            query(s<span class="number">-1</span>,t<span class="number">-1</span>,x,y);</div><div class="line">            <span class="keyword">if</span>(cmd[<span class="number">1</span>]==<span class="string">'S'</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,x);</div><div class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,y);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>直观感受就是简洁暴力，效率也是极其高的，是链剖的级别。但是时间复杂度理论却为\( O(n\sqrt n) \)只能说明常数竟然为链剖级别！！<br>块状树的理论在这里 <a href="http://wjmzbmr.com/archives/massive_tree/" target="_blank" rel="external">WJMZBMR（%%%）</a><br>就像论文里描述的，块状树目前只能解决单点、链的问题，针对子树问题就比较尴尬了。</p>
-<h4 id="博主不自量力，正在研究块状树对子树问题的解决方法。（多半是借助其他数据结构。。。）"><a href="#博主不自量力，正在研究块状树对子树问题的解决方法。（多半是借助其他数据结构。。。）" class="headerlink" title="博主不自量力，正在研究块状树对子树问题的解决方法。（多半是借助其他数据结构。。。）"></a>博主不自量力，正在研究块状树对子树问题的解决方法。（多半是借助其他数据结构。。。）</h4><p>建块的方法：Dfs一下，对每个结点只要其属于的块大小不超过SqrtN，就把其孩子加入其属于的块，否则其孩子自立一个块——from clj<br>这种建块方法严格保证块直径，大小，连通性，不保证块个数,<br>但是这种类似于SIZE的树上分块方法实际上效果很不错。</p>
+<h2>过渡Ⅰ</h2>
+<p>链剖就这样结束了吧，毕竟大家都有过了解，并且也都学习过，接下来是一道裸题，轻喷。
+<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1036" target="_blank" rel="external">BZOJ1036</a>
+没错，是一道已经做烂的经典题目，什么树链剖分+线段树就可以快速水过，详情请见hzwer（%%%）的代码，里面还有一份很清新的LCT的方法，这些都是极好的。
+接下来，就是重点。为什么博主谈到了这道题，那是因为与接下来的块状树有关。</p>
+<h1>块状树（优秀的暴力）</h1>
+<p>一般谈到块状树，例题举例便是<strong>Gty的超级妹子树</strong>之类的，会使人感觉块状树引用范围太少，比不上链剖（虽然这是事实），块状树的应用实际上过更加广泛，更加灵活。
+所以上面那道BZOJ1036便是一个例子。
+这次不矫情，直接上code：
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*************************************************</span></div><div class="line">    Problem: 1036</div><div class="line">    User: lemonoil</div><div class="line">    Language: C++</div><div class="line">    Result: Accepted</div><div class="line">    Time:2852 ms</div><div class="line">    Memory:4512 kb</div><div class="line">****************************************************/</div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">30000</span>,inf=~<span class="number">0U</span>&gt;&gt;<span class="number">1</span>;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">char</span> cmd[<span class="number">10</span>];</div><div class="line"><span class="keyword">struct</span> data&#123;</div><div class="line">    <span class="keyword">int</span> to,next;</div><div class="line">&#125;E[maxn&lt;&lt;<span class="number">1</span>],Et[maxn&lt;&lt;<span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> n,q,s,t,x,y,w[maxn],sqrtn,deep[maxn],fa[maxn];</div><div class="line"><span class="keyword">int</span> belong[maxn],M[maxn],sz[maxn],head[maxn],tail[maxn],tot,cnt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    E[++tot].to=y,E[tot].next=head[x],head[x]=tot;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    Et[++cnt].to=y,Et[cnt].next=tail[x],tail[x]=cnt;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsf</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> f,<span class="keyword">int</span> d)</span></span>&#123;</div><div class="line">    deep[t]=d,fa[t]=f;</div><div class="line">    <span class="keyword">int</span> tmp=belong[t];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> e=head[t];e;e=E[e].next)<span class="keyword">if</span>(E[e].to!=f)&#123;</div><div class="line">        <span class="keyword">if</span>(sz[tmp]++&lt;sqrtn)insert(t,E[e].to),belong[E[e].to]=tmp;</div><div class="line">        dfsf(E[e].to,t,d+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfss</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> s,<span class="keyword">int</span> m)</span></span>&#123;</div><div class="line">    sz[t]=s+=w[t];M[t]=m=max(m,w[t]);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> e=tail[t];e;e=Et[e].next)dfss(Et[e].to,s,m);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> u)</span></span>&#123;</div><div class="line">    w[t]=u;</div><div class="line">    <span class="keyword">if</span>(t==belong[t])dfss(t,<span class="number">0</span>,-inf);</div><div class="line">    <span class="keyword">else</span> dfss(t,sz[fa[t]],M[fa[t]]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span>&amp;s,<span class="keyword">int</span>&amp;m)</span></span>&#123;</div><div class="line">    s=<span class="number">0</span>;m=-inf;</div><div class="line">    <span class="keyword">while</span>(a!=b)&#123;</div><div class="line">        <span class="keyword">if</span>(deep[a]&lt;deep[b])swap(a,b);</div><div class="line">        <span class="keyword">if</span>(belong[a]==belong[b])</div><div class="line">            s+=w[a],m=max(m,w[a]),a=fa[a];</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">if</span>(deep[belong[a]]&lt;deep[belong[b]])swap(a,b);</div><div class="line">            s+=sz[a],m=max(m,M[a]),a=fa[belong[a]];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    m=max(m,w[a]);s+=w[a];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;res)</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">char</span> ch;<span class="keyword">int</span> flag=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)<span class="keyword">if</span>(ch==<span class="string">'-'</span>)flag=<span class="number">-1</span>;res=ch<span class="number">-48</span>;</div><div class="line">    <span class="keyword">while</span>((ch=getchar())&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)res=res*<span class="number">10</span>+ch<span class="number">-48</span>;res*=flag;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    read(n),sqrtn=<span class="built_in">sqrt</span>(n)+<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)read(s),read(t),--s,--t,addedge(s,t),addedge(t,s);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)read(w[i]),belong[i]=i;</div><div class="line">    dfsf(<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>),read(q);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(belong[i]==i)dfss(i,<span class="number">0</span>,-inf);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;q;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,cmd);</div><div class="line">        read(s),read(t);</div><div class="line">        <span class="keyword">if</span>(cmd[<span class="number">0</span>]==<span class="string">'C'</span>)change(s<span class="number">-1</span>,t);</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            query(s<span class="number">-1</span>,t<span class="number">-1</span>,x,y);</div><div class="line">            <span class="keyword">if</span>(cmd[<span class="number">1</span>]==<span class="string">'S'</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,x);</div><div class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,y);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>直观感受就是简洁暴力，效率也是极其高的，是链剖的级别。但是时间复杂度理论却为\( O(n\sqrt n) \)只能说明常数竟然为链剖级别！！
+块状树的理论在这里 <a href="http://wjmzbmr.com/archives/massive_tree/" target="_blank" rel="external">WJMZBMR（%%%）</a>
+就像论文里描述的，块状树目前只能解决单点、链的问题，针对子树问题就比较尴尬了。</p>
+<h4>博主不自量力，正在研究块状树对子树问题的解决方法。（多半是借助其他数据结构。。。）</h4>
+<p>建块的方法：Dfs一下，对每个结点只要其属于的块大小不超过SqrtN，就把其孩子加入其属于的块，否则其孩子自立一个块——from clj
+这种建块方法严格保证块直径，大小，连通性，不保证块个数,
+但是这种类似于SIZE的树上分块方法实际上效果很不错。</p>
 <p>鉴于块状树的开发是否会有更大的进展目前暂时不明了，所以这里就此打住。在竞赛中，块状树在暴力的应用应该更显著，毕竟\( \sqrt n \)的复杂度也确实比较大；</p>
-<h2 id="过渡Ⅱ"><a href="#过渡Ⅱ" class="headerlink" title="过渡Ⅱ"></a>过渡Ⅱ</h2><p>从块状树上面我们最应该学到的是其树上分块的思想，树上分块与树上分治是解决树上问题的利器。如何树上分块是依据题目特点<br>、要求所决定的。<br>所以下一章节便是<br>——</p>
-<h1 id="树上分块"><a href="#树上分块" class="headerlink" title="树上分块"></a>树上分块</h1><p>大致上分为4类：</p>
-<h3 id="DFS序分块"><a href="#DFS序分块" class="headerlink" title="DFS序分块"></a>DFS序分块</h3><p>通过DFS序每\( \sqrt N \)个点分成一块，好写，非常有利于与<br>DFS 序有关的题目，且严格保证了块的大小，不保证块直径。</p>
-<h3 id="HEIGHT分块"><a href="#HEIGHT分块" class="headerlink" title="HEIGHT分块"></a>HEIGHT分块</h3><p>通过Depth每\( \sqrt {Hmax} \)分成一块，好写，严格保证块直径，<br>不保证块大小，保证连通。</p>
-<h3 id="SIZE分块"><a href="#SIZE分块" class="headerlink" title="SIZE分块"></a>SIZE分块</h3><p>检验父亲所在的size是否小于\( \sqrt N \)，小于就加入，否则新开<br>一块，严格保证块直径，大小，连通性，不保证块个数。</p>
-<h3 id="王室联邦分块"><a href="#王室联邦分块" class="headerlink" title="王室联邦分块"></a>王室联邦分块</h3><p>保证块直径，大小，个数，不保证联通。</p>
-<h2 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h2><p>上述4种方法各有优劣，一般说来DFS序、SIZE分块法比较常见，而王室联邦的分块方法则更像真正的高级树上分块方法，详情见下文。至于HEIGHT分块法。。。。我连例题都找不到一道，囧，知道有这样一种概念就好了吧。</p>
-<h4 id="BZOJ1086王室联邦"><a href="#BZOJ1086王室联邦" class="headerlink" title="BZOJ1086王室联邦"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1086" target="_blank" rel="external">BZOJ1086王室联邦</a></h4><p>很有趣的题，鉴于普通的树上分块可以被菊花图开卡掉，所以我们可以考虑为其他的块预留一些位置，考虑到当一块size&gt;=b时，就把这些分成一块。深度搜索时仍然是从任意节点开始，维护一个栈，当节点退出递归时便压栈，自上而下的合并至块中。所以当某子树深搜完后栈内元素&gt;=b时便合并成一块。所以其缺点中的不保证联通性就是如果某子树深搜后栈内元素不够b，那么这些元素就会与下一个子树内部的节点合并，直至元素个数&gt;=b。<br>所以我们每一次递归时维护栈底，对于当前子树，这个栈底即是整个栈的底，栈底下元素不可被修改、弹栈。最后保证了子树内未分分块的节点数&lt;=b,并且每块的大小也不超过2b，将剩余节点暴力塞进最后一块中，那么最大的块就不会超过3b的size的大小。</p>
-<h3 id="重点：-DFS序与SIZE"><a href="#重点：-DFS序与SIZE" class="headerlink" title="重点： DFS序与SIZE"></a>重点： DFS序与SIZE</h3><p>尽管有种种什么菊花图、链式图来卡树上分块，（那毕竟是少数无良出题人。。。。。），DFS序分块作为树问题转序列问题的经典方法，是很值得OIer学习的，考虑到维护时间戳，记录节点入度与出度的时间，可以轻松将树压缩与序列之上，剩下的什么分块就可以完美胜任了。</p>
-<h4 id="DFS序的运用"><a href="#DFS序的运用" class="headerlink" title="DFS序的运用"></a>DFS序的运用</h4><blockquote>
+<h2>过渡Ⅱ</h2>
+<p>从块状树上面我们最应该学到的是其树上分块的思想，树上分块与树上分治是解决树上问题的利器。如何树上分块是依据题目特点
+、要求所决定的。
+所以下一章节便是
+——</p>
+<h1>树上分块</h1>
+<p>大致上分为4类：</p>
+<h3>DFS序分块</h3>
+<p>通过DFS序每\( \sqrt N \)个点分成一块，好写，非常有利于与
+DFS 序有关的题目，且严格保证了块的大小，不保证块直径。</p>
+<h3>HEIGHT分块</h3>
+<p>通过Depth每\( \sqrt {Hmax} \)分成一块，好写，严格保证块直径，
+不保证块大小，保证连通。</p>
+<h3>SIZE分块</h3>
+<p>检验父亲所在的size是否小于\( \sqrt N \)，小于就加入，否则新开
+一块，严格保证块直径，大小，连通性，不保证块个数。</p>
+<h3>王室联邦分块</h3>
+<p>保证块直径，大小，个数，不保证联通。</p>
+<p>##归纳
+上述4种方法各有优劣，一般说来DFS序、SIZE分块法比较常见，而王室联邦的分块方法则更像真正的高级树上分块方法，详情见下文。至于HEIGHT分块法。。。。我连例题都找不到一道，囧，知道有这样一种概念就好了吧。</p>
+<h4><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1086" target="_blank" rel="external">BZOJ1086王室联邦</a></h4>
+<p>很有趣的题，鉴于普通的树上分块可以被菊花图开卡掉，所以我们可以考虑为其他的块预留一些位置，考虑到当一块size&gt;=b时，就把这些分成一块。深度搜索时仍然是从任意节点开始，维护一个栈，当节点退出递归时便压栈，自上而下的合并至块中。所以当某子树深搜完后栈内元素&gt;=b时便合并成一块。所以其缺点中的不保证联通性就是如果某子树深搜后栈内元素不够b，那么这些元素就会与下一个子树内部的节点合并，直至元素个数&gt;=b。
+所以我们每一次递归时维护栈底，对于当前子树，这个栈底即是整个栈的底，栈底下元素不可被修改、弹栈。最后保证了子树内未分分块的节点数&lt;=b,并且每块的大小也不超过2b，将剩余节点暴力塞进最后一块中，那么最大的块就不会超过3b的size的大小。</p>
+<h3>重点： DFS序与SIZE</h3>
+<p>尽管有种种什么菊花图、链式图来卡树上分块，（那毕竟是少数无良出题人。。。。。），DFS序分块作为树问题转序列问题的经典方法，是很值得OIer学习的，考虑到维护时间戳，记录节点入度与出度的时间，可以轻松将树压缩与序列之上，剩下的什么分块就可以完美胜任了。</p>
+<h4>DFS序的运用</h4>
+<blockquote>
 <p>给定一颗树, 和每个节点的权值.下面有7个经典的关于dfs序的问题:</p>
+</blockquote>
+<blockquote>
 <ol>
-<li><p>对某个节点X权值加上一个数W, 查询某个子树X里所有点权的和.<br>由于X的子树在DFS序中是连续的一段, 只需要维护一个dfs序列,用树状数组实现:单点修改和区间查询.</p>
-</li>
-<li><p>对节点X到Y的最短路上所有点权都加一个数W, 查询某个点的权值.<br>这个操作等价于<br>a. 对X到根节点路径上所有点权加W<br>b. 对Y到根节点路径上所有点权加W<br>c. 对LCA(x, y)到根节点路径上所有点权值减W<br>d. 对LCA(x,y)的父节点 fa(LCA(x, y))到根节点路径上所有权值减W<br>于是要进行四次这样从一个点到根节点的区间修改.将问题进一步简化, 进行一个点X到根节点的区间修改, 查询其他一点Y时,只有X在Y的子树内, X对Y的值才有贡献且贡献值为W.当单点更新X时,X实现了对X到根的路径上所有点贡献了W.于是只需要更新四个点(单点更新) ,查询一个点的子树内所有点权的和(区间求和)即可.</p>
-</li>
-<li><p>对节点X到Y的最短路上所有点权都加一个数W, 查询某个点子树的权值之和.<br>同问题2中的修改方法, 转化为修改某点到根节点的权值加/减W<br>当修改某个节点A, 查询另一节点B时<br>只有A在B的子树内, Y的值会增加<br>W <em> (dep[A] - dep[B] + 1) =&gt; W </em> (dep [A] + 1) - W <em> dep[B]<br>那么我们处理两个数组就可以实现:<br>处理出数组Sum1,每次更新W</em>(dep[A]+1),和数组Sum2,每次更新W.<br>每次查询结果为Sum1(R[B]) – Sum1(L[B]-1) - (Sum2(R[B]) – Sum2(L[B]-1)) * dep [B].</p>
-</li>
-<li><p>对某个点X权值加上一个数W, 查询X到Y路径上所有点权之和.<br>求X到Y路径上所有的点权之和, 和前面X到Y路径上所有点权加一个数相似<br>这个问题转化为<br>X到根节点的和 + Y到根节点的和 - LCA(x, y)到根节点的和 - fa(LCA(x,y)) 到根节点的和<br>更新某个点x的权值时,只会对它的子树产生影响,对x的子树的每个点到根的距离都加了W.<br>那么我们用”刷漆”(差分前缀和),更新一个子树的权值.给L[x]加上W,给R[x]+1减去W,那么sum(1~L[k])就是k到根的路径点权和.</p>
-</li>
-<li><p>对节点X的子树所有节点加上一个值W, 查询X到Y的路径上所有点的权值和<br>同问题4把路径上求和转化为四个点到根节点的和<br>X到根节点的和 + Y到根节点的和 - LCA(x, y)到根节点的和 - parent(LCA(x,y)) 到根节点的<br>再用刷漆只更新子树.<br>修改一点A, 查询某点B到根节点时, 只有B在A的子树内, A对B才有贡献.<br>贡献为W <em> (dep[B] - dep[A] + 1) =&gt; W </em> (1 - dep[A]) + W <em> dep[B]<br>和第三题一样, 用两个sum1,sum2维护 W </em>(dep[A] + 1),和W.<br>最后答案就是sum2*dep[B]-sum1.</p>
-</li>
-<li>对子树X里所有节点加上一个值W, 查询某个点的值.<br>对DFS序来说, 子树内所有节点加W, 就是一段区间加W.<br>所以这个问题就是 区间修改, 单点查询.树状数组+刷漆.</li>
-<li>对子树X里所有节点加上一个值W, 查询某个子树的权值和.<br>子树所有节点加W, 就是某段区间加W, 查询某个子树的权值和, 就是查询某段区间的和<br>区间修改区间求和,用线段树可以很好解决。</li>
+<li>对某个节点X权值加上一个数W, 查询某个子树X里所有点权的和.
+由于X的子树在DFS序中是连续的一段, 只需要维护一个dfs序列,用树状数组实现:单点修改和区间查询.</li>
 </ol>
 </blockquote>
-<p>以上引用自<a href="http://blog.csdn.net/lin452/article/details/51771456" target="_blank" rel="external">here</a><br>上面总结得十分详细，不可谓不全。<br>可以看出dfs序在树上操作中发挥了至关重要的作用，配合上线段树等其他数据结构，可以在基础树上操作内问题上纵横了。<br>但是dfs序最关键的是其思想：</p>
-<h5 id="树型转序列！"><a href="#树型转序列！" class="headerlink" title="树型转序列！"></a>树型转序列！</h5><p>无论是线段树还是树状数组（两种烂大街但又无可替代的基础数据结构）都是序列型数据结构，能够转化为序列无疑是解决问题的一种方式。<br>回想树链剖分，不也是通过dfs将其编号然后植入到其他数据结构中解决吗？</p>
-<h4 id="size分块"><a href="#size分块" class="headerlink" title="size分块"></a>size分块</h4><p>这种分块方式就更加贴近于本身的树上分块的特点（在树上？）:作用于树上。<br>举个例：<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3731" target="_blank" rel="external">Gty的妹子树（注意：没有“超级”）</a><br>这道题就是典型的size分块的题：<br>如果用王室联邦分块的话需要维护每一个块dfs的序最小值和最大值，并且插入操作会破坏原来的性质，所以很GG，不如直接按sizes分块，根节点size&lt; block就加入根，否则新建块。<br>因为size分块不能保证块的数量，可以被菊花图卡掉，但是本题并没有所以就可以安心的写size，然后每个块维护排序后的值。<br>对于查询操作，不完整的块(因为是size分块所以只有子树根所在块不完整)暴力，直接把块重建一个图，每个块都整体二分。<br>修改维护有序，插入也维护有序,当然修改和插入后重新排序也可以.<br>复杂度 修改插入\( O(S) \) 查询\( O(S+\frac{N}{S}log_S) \)</p>
-<h4 id="HEIGHT分块-1"><a href="#HEIGHT分块-1" class="headerlink" title="HEIGHT分块"></a>HEIGHT分块</h4><p>我只能说无可奉告。。。。</p>
-<h2 id="过渡Ⅲ"><a href="#过渡Ⅲ" class="headerlink" title="过渡Ⅲ"></a>过渡Ⅲ</h2><p>那么下一章的方向也就很明显了，既然树分块都讲了，那么树分治肯定跑不了了，树的分块给人的感觉就是直接，在块内暴力，块上打标记，具体这么做有什么卵用。。。<br>花一点点篇幅谈谈吧，鉴于log级别的操作是极其强势的，所以思考分块比树类数据结构强在where？\( O(1) \)查询历史，详细方式见<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2589" target="_blank" rel="external">BZOJ2589</a>与<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4763" target="_blank" rel="external">BZOJ4763</a></p>
+<blockquote>
+<ol start="2">
+<li>对节点X到Y的最短路上所有点权都加一个数W, 查询某个点的权值.
+这个操作等价于
+a. 对X到根节点路径上所有点权加W
+b. 对Y到根节点路径上所有点权加W
+c. 对LCA(x, y)到根节点路径上所有点权值减W
+d. 对LCA(x,y)的父节点 fa(LCA(x, y))到根节点路径上所有权值减W
+于是要进行四次这样从一个点到根节点的区间修改.将问题进一步简化, 进行一个点X到根节点的区间修改, 查询其他一点Y时,只有X在Y的子树内, X对Y的值才有贡献且贡献值为W.当单点更新X时,X实现了对X到根的路径上所有点贡献了W.于是只需要更新四个点(单点更新) ,查询一个点的子树内所有点权的和(区间求和)即可.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>对节点X到Y的最短路上所有点权都加一个数W, 查询某个点子树的权值之和.
+同问题2中的修改方法, 转化为修改某点到根节点的权值加/减W
+当修改某个节点A, 查询另一节点B时
+只有A在B的子树内, Y的值会增加
+W * (dep[A] - dep[B] + 1) =&gt; W * (dep [A] + 1) - W * dep[B]
+那么我们处理两个数组就可以实现:
+处理出数组Sum1,每次更新W*(dep[A]+1),和数组Sum2,每次更新W.
+每次查询结果为Sum1(R[B]) – Sum1(L[B]-1) - (Sum2(R[B]) – Sum2(L[B]-1)) * dep [B].</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>对某个点X权值加上一个数W, 查询X到Y路径上所有点权之和.
+求X到Y路径上所有的点权之和, 和前面X到Y路径上所有点权加一个数相似
+这个问题转化为
+X到根节点的和 + Y到根节点的和 - LCA(x, y)到根节点的和 - fa(LCA(x,y)) 到根节点的和
+更新某个点x的权值时,只会对它的子树产生影响,对x的子树的每个点到根的距离都加了W.
+那么我们用”刷漆”(差分前缀和),更新一个子树的权值.给L[x]加上W,给R[x]+1减去W,那么sum(1~L[k])就是k到根的路径点权和.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li>对节点X的子树所有节点加上一个值W, 查询X到Y的路径上所有点的权值和
+同问题4把路径上求和转化为四个点到根节点的和
+X到根节点的和 + Y到根节点的和 - LCA(x, y)到根节点的和 - parent(LCA(x,y)) 到根节点的
+再用刷漆只更新子树.
+修改一点A, 查询某点B到根节点时, 只有B在A的子树内, A对B才有贡献.
+贡献为W * (dep[B] - dep[A] + 1) =&gt; W * (1 - dep[A]) + W * dep[B]
+和第三题一样, 用两个sum1,sum2维护 W <em>(dep[A] + 1),和W.
+最后答案就是sum2</em>dep[B]-sum1.</li>
+<li>对子树X里所有节点加上一个值W, 查询某个点的值.
+对DFS序来说, 子树内所有节点加W, 就是一段区间加W.
+所以这个问题就是 区间修改, 单点查询.树状数组+刷漆.</li>
+<li>对子树X里所有节点加上一个值W, 查询某个子树的权值和.
+子树所有节点加W, 就是某段区间加W, 查询某个子树的权值和, 就是查询某段区间的和
+区间修改区间求和,用线段树可以很好解决。</li>
+</ol>
+</blockquote>
+<p>以上引用自<a href="http://blog.csdn.net/lin452/article/details/51771456" target="_blank" rel="external">here</a>
+上面总结得十分详细，不可谓不全。
+可以看出dfs序在树上操作中发挥了至关重要的作用，配合上线段树等其他数据结构，可以在基础树上操作内问题上纵横了。
+但是dfs序最关键的是其思想：</p>
+<h5>树型转序列！</h5>
+<p>无论是线段树还是树状数组（两种烂大街但又无可替代的基础数据结构）都是序列型数据结构，能够转化为序列无疑是解决问题的一种方式。
+回想树链剖分，不也是通过dfs将其编号然后植入到其他数据结构中解决吗？</p>
+<h4>size分块</h4>
+<p>这种分块方式就更加贴近于本身的树上分块的特点（在树上？）:作用于树上。
+举个例：<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3731" target="_blank" rel="external">Gty的妹子树（注意：没有“超级”）</a>
+这道题就是典型的size分块的题：
+如果用王室联邦分块的话需要维护每一个块dfs的序最小值和最大值，并且插入操作会破坏原来的性质，所以很GG，不如直接按sizes分块，根节点size&lt; block就加入根，否则新建块。
+因为size分块不能保证块的数量，可以被菊花图卡掉，但是本题并没有所以就可以安心的写size，然后每个块维护排序后的值。
+对于查询操作，不完整的块(因为是size分块所以只有子树根所在块不完整)暴力，直接把块重建一个图，每个块都整体二分。
+修改维护有序，插入也维护有序,当然修改和插入后重新排序也可以.
+复杂度 修改插入\( O(S) \) 查询\( O(S+\frac{N}{S}log_S) \)</p>
+<h4>HEIGHT分块</h4>
+<p>我只能说无可奉告。。。。</p>
+<h2>过渡Ⅲ</h2>
+<p>那么下一章的方向也就很明显了，既然树分块都讲了，那么树分治肯定跑不了了，树的分块给人的感觉就是直接，在块内暴力，块上打标记，具体这么做有什么卵用。。。
+花一点点篇幅谈谈吧，鉴于log级别的操作是极其强势的，所以思考分块比树类数据结构强在where？\( O(1) \)查询历史，详细方式见<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2589" target="_blank" rel="external">BZOJ2589</a>与<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4763" target="_blank" rel="external">BZOJ4763</a></p>
 <p>然后言归正传，边分治、点分治，我来了！！！</p>
-<h1 id="树分治"><a href="#树分治" class="headerlink" title="树分治"></a>树分治</h1>
+<h1>树分治</h1>
+
   </section>
 
   <!-- ������City�氲װ���� -->

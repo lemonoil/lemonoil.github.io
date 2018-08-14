@@ -7,14 +7,14 @@ https://lemonoil.github.io/2017/09/23/BZOJ4170 极光 [二维线段树]/
 https://lemonoil.github.io/2017/09/23/NOIP模拟 NYG的背包 [高山算法]/
 https://lemonoil.github.io/2017/09/23/刘润达的模拟题/
 https://lemonoil.github.io/2017/09/22/可持久化并查集（外传）——[按秩启发式合并]/
-https://lemonoil.github.io/2017/09/22/浅谈竞赛中的部分树（块、点、链）【长期更新】/
 https://lemonoil.github.io/2017/09/22/洲阁筛/
+https://lemonoil.github.io/2017/09/22/浅谈竞赛中的部分树（块、点、链）【长期更新】/
 https://lemonoil.github.io/2017/09/22/SPOJ QTree6 [树链剖分]/
-https://lemonoil.github.io/2017/09/22/SPOJ QTree5 [树链剖分]/
 https://lemonoil.github.io/2017/09/22/SPOJ QTree7 [SET][树链剖分]/
-https://lemonoil.github.io/2017/09/22/SPOJ QTree5 [点分治][堆]/
-https://lemonoil.github.io/2017/09/22/SPOJ QTree4/
+https://lemonoil.github.io/2017/09/22/SPOJ QTree5 [树链剖分]/
 https://lemonoil.github.io/2017/09/22/SPOJ QTree3 [伪的][主席树]/
-https://lemonoil.github.io/2017/09/22/SPOJ QTree again！/
+https://lemonoil.github.io/2017/09/22/SPOJ QTree4/
+https://lemonoil.github.io/2017/09/22/SPOJ QTree5 [点分治][堆]/
 https://lemonoil.github.io/2017/09/22/SPOJ QTree2/
+https://lemonoil.github.io/2017/09/22/SPOJ QTree again！/
 https://lemonoil.github.io/2017/09/22/Finger Search Tree 模板 BZOJ3224/
